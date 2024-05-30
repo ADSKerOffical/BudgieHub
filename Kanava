@@ -1,0 +1,189 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+
+local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Симулятор падения в канаву 1.0", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "PVP",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+ Name = "Analysis weapons ",
+ Callback = function()
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local movableObjects = workspace:GetDescendants()
+for _, object in pairs(movableObjects) do
+  if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name == "Torso" == false and object.Name == "Head" == false and object.Name == "Right Arm" == false and object.Name == "Left Arm" == false and object.Name == "Right Leg" == false and object.Name == "Left Leg" == false and object.Name == "HumanoidRootPart" == false then 
+   
+    object.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+  end
+ end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Analysis weapons with using Tool",
+ Callback = function()
+        local tool = Instance.new("Tool")
+tool.Name = "Get weapons"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local movableObjects = workspace:GetDescendants()
+for _, object in pairs(movableObjects) do
+  if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name == "Torso" == false and object.Name == "Head" == false and object.Name == "Right Arm" == false and object.Name == "Left Arm" == false and object.Name == "Right Leg" == false and object.Name == "Left Leg" == false and object.Name == "HumanoidRootPart" == false then 
+   
+    object.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+  end
+ end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+   end    
+})
+
+Tab:AddToggle({
+	Name = "Anti Slow",
+	Default = false,
+	Callback = function(Value)
+	local aAS = Value
+	while aAS do
+wait()
+		if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed <= 8 then
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+		end
+	end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Anti inventory lock",
+	Default = false,
+	Callback = function(Value)
+	local AIL = Value
+      while AIL do
+ task.wait()
+  local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
+
+local sgui = game:GetService("StarterGui")
+sgui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+end
+	end    
+})
+
+Tab:AddToggle({
+ Name = "Anti jump block",
+ Default = false,
+ Callback = function(Value)
+ local AJB = Value
+        while AJB do
+  wait()
+local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, true)
+
+local initialJump = 50
+local currentJump = Character.Humanoid.JumpPower
+
+if currentJump >= 0 and currentJump <= 10 then
+    Character.Humanoid.JumpPower = initialJump
+else
+    Character.Humanoid.JumpPower = currentJump
+end
+ end
+   end    
+})
+
+Tab:AddDropdown({
+	Name = "Anti Void(And Kanava And Water)",
+	Default = "1",
+	Options = {"On", "Off"},
+	Callback = function(Value)
+		if Value == "On" then
+		local part = Instance.new("Part")
+part.Name = "AntiFallPart"
+part.Size = Vector3.new(50000, 5, 50000)
+part.Transparency = 1
+part.Anchored = true
+part.Position = Vector3.new(0, 2045.5, 0)
+part.Parent = game.Workspace
+part.CanCollide = true
+part.CanTouch = true
+		end
+		if Value == "Off" then
+for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("Part") and part.Name == "AntiFallPart" then
+            part.CanCollide = false
+            part.CanTouch = false
+        end
+    end
+		end
+	end    
+})
+
+Tab:AddDropdown({
+	Name = "Anti Knockback",
+	Default = "1",
+	Options = {"On", "Off"},
+	Callback = function(Value)
+		if Value == "On" then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+  
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, math.huge, math.huge) 
+    end
+  end
+		end
+		if Value == "Off" then
+		local plr = game.Players.LocalPlayer
+local char = plr.Character
+  
+  for _, child in pairs(char:GetChildren()) do
+    if child:IsA("BasePart") then
+      child.Massless = false
+      child.CustomPhysicalProperties = PhysicalProperties.new(1, 1, 1) 
+    end
+  end
+		end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Always Day",
+	Default = false,
+	Callback = function(Value)
+	local ADg = Value
+		while ADg do
+	task.wait()
+		game.Lighting.TimeOfDay = 12
+		end
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Walk on Ragdoll State",
+	Default = false,
+	Callback = function(Value)
+	local WnRS = Value
+		while WnRS do wait()
+local player = game.Players.LocalPlayer
+player.Character.Humanoid.PlatformStand = false
+end
+	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Creator",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddLabel("Creator – MEGACOCONUT")
