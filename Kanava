@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.0", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.1", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
 local Tab = Window:MakeTab({
 	Name = "PVP",
@@ -178,6 +178,31 @@ local player = game.Players.LocalPlayer
 player.Character.Humanoid.PlatformStand = false
 end
 	end    
+})
+
+Tab:AddButton({
+ Name = "Anti Touch Water",
+ Callback = function()
+        for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("Part") and part.Name == "pee" or part.Name == "pee1" then
+           part.CanCollide = false
+          part.CanTouch = false
+          part:Destroy()
+        end
+    end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Anti Touch Bonfire",
+ Callback = function()
+        for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("Part") and part.Name == "FireTouch" then
+           part.CanCollide = false
+          part.CanTouch = false
+        end
+    end
+   end    
 })
 
 local Tab = Window:MakeTab({
