@@ -9,7 +9,7 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
- Name = "Analysis weapons ",
+ Name = "Analysis weapons",
  Callback = function()
         local LocalPlayer = game:GetService("Players").LocalPlayer
 
@@ -46,11 +46,13 @@ tool.Parent = game.Players.LocalPlayer.Backpack
    end    
 })
 
+local aAS = false
+
 Tab:AddToggle({
 	Name = "Anti Slow",
 	Default = false,
 	Callback = function(Value)
-	local aAS = Value
+	 aAS = Value
 	while aAS do
 wait()
 		if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed <= 8 then
@@ -60,11 +62,13 @@ wait()
 	end    
 })
 
+local AIL = false
+
 Tab:AddToggle({
 	Name = "Anti inventory lock",
 	Default = false,
 	Callback = function(Value)
-	local AIL = Value
+	 AIL = Value
       while AIL do
  task.wait()
   local StarterGui = game:GetService("StarterGui")
@@ -76,11 +80,13 @@ end
 	end    
 })
 
+local AJB = false
+
 Tab:AddToggle({
  Name = "Anti jump block",
  Default = false,
  Callback = function(Value)
- local AJB = Value
+ AJB = Value
         while AJB do
   wait()
 local Player = game.Players.LocalPlayer
@@ -156,11 +162,13 @@ local char = plr.Character
 	end    
 })
 
+local ADg = false
+
 Tab:AddToggle({
 	Name = "Always Day",
 	Default = false,
 	Callback = function(Value)
-	local ADg = Value
+	 ADg = Value
 		while ADg do
 	task.wait()
 		game.Lighting.TimeOfDay = 12
@@ -168,11 +176,13 @@ Tab:AddToggle({
 	end    
 })
 
+local WnRS = false
+
 Tab:AddToggle({
 	Name = "Walk on Ragdoll State",
 	Default = false,
 	Callback = function(Value)
-	local WnRS = Value
+	 WnRS = Value
 		while WnRS do wait()
 local player = game.Players.LocalPlayer
 player.Character.Humanoid.PlatformStand = false
@@ -205,16 +215,14 @@ Tab:AddButton({
    end    
 })
 
-Tab:AddButton({
+local ATB = false
+
+Tab:AddToggle({
 	Name = "Auto Tool Beats",
-	Callback = function()
-OrionLib:MakeNotification({
-	Name = "Budgie Hub",
-	Content = "When you equip any tool, the script is activated, this function turns off after death",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
-      		repeat wait(0.2)
+        Default = false,
+	Callback = function(Value)
+  ATB = Value
+while ATB do wait(0.3)
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local remotes = replicatedStorage.Remotes
     local player = game.Players.LocalPlayer
@@ -223,7 +231,7 @@ local remotes = replicatedStorage.Remotes
     if character:FindFirstChildOfClass("Tool") then
         remotes.HitRequest:InvokeServer()
     end
-until game.Players.LocalPlayer.Character.Humanoid.Health == 0
+end
   	end    
 })
 
@@ -248,11 +256,13 @@ until game.Players.LocalPlayer.Character.Humanoid.Health == 0
   	end    
 })
 
+local GMod = false
+
 Tab:AddToggle({
 	Name = "Almost Godmode(Test)",
 	Default = false,
 	Callback = function(Value)
-local GMod = Value
+ GMod = Value
 if GMod == true then
 OrionLib:MakeNotification({
 	Name = "Budgie Hub",
