@@ -46,6 +46,54 @@ tool.Parent = game.Players.LocalPlayer.Backpack
    end    
 })
 
+local APT = false
+local movableObjects = {}
+
+local function hasUnattachedObjects()
+    for _, object in pairs(movableObjects) do
+        if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+            return true
+        end
+    end
+    return false
+end
+
+local function addMovableObject(object)
+    if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+        table.insert(movableObjects, object)
+    end
+end
+
+local function activateScript()
+    while APT do
+        wait(0.5)
+        if hasUnattachedObjects() then
+            local LocalPlayer = game:GetService("Players").LocalPlayer
+            for _, object in pairs(movableObjects) do
+                if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+                    object.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+                  object.CanCollide = false
+                end
+            end
+        else
+            task.wait()
+        end
+    end
+end
+
+workspace.DescendantAdded:Connect(addMovableObject)
+
+Tab:AddToggle({
+    Name = "Auto Picking Tools",
+    Default = false,
+    Callback = function(Value)
+        APT = Value
+        if APT then
+            activateScript()
+        end
+    end
+})
+
 local aAS = false
 
 Tab:AddToggle({
