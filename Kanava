@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.3", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.4", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
 local Tab = Window:MakeTab({
 	Name = "PVP",
@@ -307,7 +307,7 @@ until game.Players.LocalPlayer.Character.Humanoid.Health == 0
 local GMod = false
 
 Tab:AddToggle({
-	Name = "Almost Godmode(Test)",
+	Name = "Almost Godmode",
 	Default = false,
 	Callback = function(Value)
  GMod = Value
@@ -476,6 +476,58 @@ local player = game.Players.LocalPlayer
     end
   end
 		end
+	end    
+})
+
+local LPT = false
+
+Tab:AddToggle({
+	Name = "Long Punch(Test)",
+	Default = false,
+	Callback = function(Value)
+	LPT = Value
+		local player = game:GetService("Players").LocalPlayer
+while LPT do task.wait()
+    local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 2)
+    local foundEntity = false
+    for _, part in ipairs(parts) do
+        if (part:IsA("BasePart") or part:IsA("UnionOperation") or part:IsA("Model")) and not part.Anchored and part:IsDescendantOf(workspace) and not part:IsDescendantOf(player.Character) then
+            foundEntity = true
+            break
+        end
+    end
+    if foundEntity then
+        player.Character.Humanoid.HipHeight = -1.8
+    else
+        player.Character.Humanoid.HipHeight = 0
+    end
+end
+	end    
+})
+
+local PAT = false
+
+Tab:AddToggle({
+	Name = "Punch Aura(Test)",
+	Default = false,
+	Callback = function(Value)
+	PAT = Value
+		local player = game:GetService("Players").LocalPlayer
+while PAT do task.wait()
+    local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 1.6)
+    local foundEntity = false
+    for _, part in ipairs(parts) do
+        if (part:IsA("BasePart") or part:IsA("UnionOperation") or part:IsA("Model")) and not part.Anchored and part:IsDescendantOf(workspace) and not part:IsDescendantOf(player.Character) then
+            foundEntity = true
+            break
+        end
+    end
+    if foundEntity then
+        game:GetService("ReplicatedStorage").Remotes.HitRequest:InvokeServer()
+    else
+        
+    end
+end
 	end    
 })
 
