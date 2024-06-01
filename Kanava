@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.2", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Budgie Hub | Fall in Funnel Simulator 1.3", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
 local Tab = Window:MakeTab({
 	Name = "PVP",
@@ -51,7 +51,7 @@ local movableObjects = {}
 
 local function hasUnattachedObjects()
     for _, object in pairs(movableObjects) do
-        if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+        if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" and object.Name ~= "Handle" then
             return true
         end
     end
@@ -59,7 +59,7 @@ local function hasUnattachedObjects()
 end
 
 local function addMovableObject(object)
-    if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+    if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" and object.Name ~= "Handle" then
         table.insert(movableObjects, object)
     end
 end
@@ -70,7 +70,7 @@ local function activateScript()
         if hasUnattachedObjects() then
             local LocalPlayer = game:GetService("Players").LocalPlayer
             for _, object in pairs(movableObjects) do
-                if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" then
+                if object:IsA("BasePart" or "UnionOperation" or "Model") and object.Anchored == false and object:IsDescendantOf(game.Players.LocalPlayer.Character) == false and object.Name ~= "Torso" and object.Name ~= "Head" and object.Name ~= "Right Arm" and object.Name ~= "Left Arm" and object.Name ~= "Right Leg" and object.Name ~= "Left Leg" and object.Name ~= "HumanoidRootPart" and object.Name ~= "Handle" then
                     object.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
                   object.CanCollide = false
                 end
@@ -453,6 +453,30 @@ end
 
         startFling()
    end    
+})
+
+Tab:AddDropdown({
+	Name = "Tools Grip",
+	Default = "1",
+	Options = {"Gyaat(Need Бита)"},
+	Callback = function(Value)
+		if Value == "Gyaat(Need Бита)" then
+		local player = game.Players.LocalPlayer
+  for _, tool in ipairs(player.Backpack:GetChildren()) do
+    if tool:IsA("Tool") and tool.Name == "Бита" then
+  tool.Grip = CFrame.Angles(7.9, math.rad(5), 0)
+     end
+end
+
+wait()
+local player = game.Players.LocalPlayer
+  for _, tool in ipairs(player.Backpack:GetChildren()) do
+    if tool:IsA("Tool") and tool.Name == "Бита" then
+      tool.GripPos = Vector3.new(1.3, 0, 1.7) 
+    end
+  end
+		end
+	end    
 })
 
 local Tab = Window:MakeTab({
